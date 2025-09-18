@@ -6,10 +6,6 @@ import { useEffect, useState } from 'react';
 import { cartObject, type ICart, type ICartProduct } from '../utils/cart.class';
 import toast from 'react-hot-toast';
 
-interface ICheckoutProps {
-    setIsCheckoutModalOpen: (valu: boolean) => void
-}
-
 const validationSchema = Yup.object({
     name: Yup.string()
         .min(3, "Name must be at least 3 characters")
@@ -31,7 +27,7 @@ const validationSchema = Yup.object({
         .max(200, "Notes should not exceed 200 characters"),
 });
 
-const Checkout = ({ setIsCheckoutModalOpen }: ICheckoutProps) => {
+const Checkout = () => {
 
     const formik = useFormik({
         initialValues: {
@@ -58,7 +54,7 @@ const Checkout = ({ setIsCheckoutModalOpen }: ICheckoutProps) => {
         setShippingFees(AllCitiesCost[formik.values.city])
     }, [formik.values.city])
 
-    const [cartData, setCartData] = useState<ICart>(cartObject.getCart() as ICart);
+    const [cartData, _] = useState<ICart>(cartObject.getCart() as ICart);
     const [shippingFees, setShippingFees] = useState<number>(0);
 
     const renderCartProducts = cartData?.products.map((product: ICartProduct, index) => {

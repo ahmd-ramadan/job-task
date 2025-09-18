@@ -51,7 +51,7 @@ const Header = ({ updateCartProductsCnt, cartProductsCnt }: ICartProps) => {
                 setIsCheckoutModalOpen={setIsCheckoutModalOpen}
             />}
 
-            { isCheckoutModalOpen && <Checkout setIsCheckoutModalOpen={setIsCheckoutModalOpen}/>}
+            { isCheckoutModalOpen && <Checkout />}
         </header>
     )
 }
